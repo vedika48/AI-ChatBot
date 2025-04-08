@@ -8,7 +8,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
-</head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
@@ -210,132 +209,228 @@
         </div>
 
         <!-- Profile Section -->
-        <div class="row profile-section">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h5><i class="fas fa-user-circle me-2"></i>My Profile</h5>
+<div class="row profile-section" style="display: none;">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h5><i class="fas fa-user-circle me-2"></i>My Profile</h5>
+            </div>
+            <div class="card-body">
+                <div class="step-indicator mb-4">
+                    <div class="step active" data-step="1">
+                        <div class="step-circle">1</div>
+                        <div class="step-title">Basic Info</div>
                     </div>
-                    <div class="card-body">
-                        <div class="step-indicator mb-4">
-                            <div class="step active">
-                                <div class="step-circle">1</div>
-                                <div class="step-title">Basic Info</div>
-                            </div>
-                            <div class="step">
-                                <div class="step-circle">2</div>
-                                <div class="step-title">Skills & Experience</div>
-                            </div>
-                            <div class="step">
-                                <div class="step-circle">3</div>
-                                <div class="step-title">Job Preferences</div>
-                            </div>
-                            <div class="step">
-                                <div class="step-circle">4</div>
-                                <div class="step-title">Resume Upload</div>
-                            </div>
-                        </div>
-                        
-                        <form id="profile-form">
-                            <div class="row mb-4">
-                                <div class="col-md-6">
-                                    <label for="first-name" class="form-label">First Name</label>
-                                    <input type="text" class="form-control" id="first-name" name="first_name">
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="last-name" class="form-label">Last Name</label>
-                                    <input type="text" class="form-control" id="last-name" name="last_name">
-                                </div>
-                            </div>
-                            <div class="row mb-4">
-                                <div class="col-md-6">
-                                    <label for="current-job" class="form-label">Current Job Title</label>
-                                    <input type="text" class="form-control" id="current-job" name="current_job_title">
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="industry" class="form-label">
-                                        Industry 
-                                        <i class="fas fa-info-circle tooltip-icon" data-bs-toggle="tooltip" title="Select the industry that best matches your experience"></i>
-                                    </label>
-                                    <select class="form-select" id="industry" name="industry">
-                                        <option value="">Select Industry</option>
-                                        <option value="Technology">Technology</option>
-                                        <option value="Healthcare">Healthcare</option>
-                                        <option value="Finance">Finance</option>
-                                        <option value="Education">Education</option>
-                                        <option value="Marketing">Marketing</option>
-                                        <option value="Other">Other</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="row mb-4">
-                                <div class="col-md-12">
-                                    <label for="skills" class="form-label">Skills</label>
-                                    <input type="text" class="form-control" id="skills" name="skills" placeholder="e.g., Project Management, Data Analysis, Leadership">
-                                    <div class="form-text">Separate skills with commas</div>
-                                </div>
-                            </div>
-                            <div class="row mb-4">
-                                <div class="col-md-6">
-                                    <label for="desired-jobs" class="form-label">Desired Job Titles</label>
-                                    <input type="text" class="form-control" id="desired-jobs" name="desired_job_titles" placeholder="e.g., Product Manager, Senior Designer">
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="desired-locations" class="form-label">Desired Locations</label>
-                                    <input type="text" class="form-control" id="desired-locations" name="desired_locations" placeholder="e.g., San Francisco, Remote, New York">
-                                </div>
-                            </div>
-                            <div class="row mb-4">
-                                <div class="col-md-4">
-                                    <label for="min-salary" class="form-label">Minimum Salary</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text">$</span>
-                                        <input type="number" class="form-control" id="min-salary" name="min_salary" placeholder="70000">
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-check mt-4">
-                                        <input class="form-check-input" type="checkbox" id="remote-preference" name="remote_preference">
-                                        <label class="form-check-label" for="remote-preference">
-                                            <i class="fas fa-home me-1"></i> Remote Work Preference
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-check mt-4">
-                                        <input class="form-check-input" type="checkbox" id="flexible-hours" name="flexible_hours_preference">
-                                        <label class="form-check-label" for="flexible-hours">
-                                            <i class="fas fa-clock me-1"></i> Flexible Hours Preference
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="mb-4">
-                                <label for="resume-text" class="form-label">Paste Resume Text for Analysis</label>
-                                <textarea class="form-control" id="resume-text" rows="5" placeholder="Paste the text of your resume here for AI analysis..."></textarea>
-                            </div>
-
-                            <div class="alert alert-primary d-flex align-items-center mb-4" role="alert">
-                                <i class="fas fa-info-circle me-2"></i>
-                                <div>
-                                    Our AI will analyze your resume to suggest skills you might have missed and identify areas for improvement.
-                                </div>
-                            </div>
-
-                            <div class="d-flex justify-content-between">
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="fas fa-save me-2"></i> Save Profile
-                                </button>
-                                <button type="button" class="btn btn-secondary" id="parse-resume-btn">
-                                    <i class="fas fa-magic me-2"></i> Analyze Resume
-                                </button>
-                            </div>
-                        </form>
+                    <div class="step" data-step="2">
+                        <div class="step-circle">2</div>
+                        <div class="step-title">Skills & Experience</div>
+                    </div>
+                    <div class="step" data-step="3">
+                        <div class="step-circle">3</div>
+                        <div class="step-title">Job Preferences</div>
+                    </div>
+                    <div class="step" data-step="4">
+                        <div class="step-circle">4</div>
+                        <div class="step-title">Resume Upload</div>
                     </div>
                 </div>
+                
+                <form id="profile-form">
+                    <!-- Step 1: Basic Info -->
+                    <div class="form-step" id="step-1">
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <label for="first-name" class="form-label">First Name</label>
+                                <input type="text" class="form-control" id="first-name" name="first_name" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="last-name" class="form-label">Last Name</label>
+                                <input type="text" class="form-control" id="last-name" name="last_name" required>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" name="email" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="phone" class="form-label">Phone Number</label>
+                                <input type="tel" class="form-control" id="phone" name="phone">
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between mt-4">
+                            <div></div> <!-- Empty div for spacing -->
+                            <button type="button" class="btn btn-primary next-btn" data-step="1">
+                                Next <i class="fas fa-arrow-right ms-2"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 2: Skills & Experience -->
+                    <div class="form-step" id="step-2" style="display: none;">
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <label for="current-job" class="form-label">Current Job Title</label>
+                                <input type="text" class="form-control" id="current-job" name="current_job_title">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="industry" class="form-label">
+                                    Industry 
+                                    <i class="fas fa-info-circle tooltip-icon" data-bs-toggle="tooltip" title="Select the industry that best matches your experience"></i>
+                                </label>
+                                <select class="form-select" id="industry" name="industry">
+                                    <option value="">Select Industry</option>
+                                    <option value="Technology">Technology</option>
+                                    <option value="Healthcare">Healthcare</option>
+                                    <option value="Finance">Finance</option>
+                                    <option value="Education">Education</option>
+                                    <option value="Marketing">Marketing</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-md-12">
+                                <label for="skills" class="form-label">Skills</label>
+                                <input type="text" class="form-control" id="skills" name="skills" placeholder="e.g., Project Management, Data Analysis, Leadership">
+                                <div class="form-text">Separate skills with commas</div>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-md-12">
+                                <label for="experience" class="form-label">Years of Experience</label>
+                                <select class="form-select" id="experience" name="experience">
+                                    <option value="">Select Experience</option>
+                                    <option value="0-1">Less than 1 year</option>
+                                    <option value="1-3">1-3 years</option>
+                                    <option value="3-5">3-5 years</option>
+                                    <option value="5-10">5-10 years</option>
+                                    <option value="10+">10+ years</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between mt-4">
+                            <button type="button" class="btn btn-outline-secondary back-btn" data-step="2">
+                                <i class="fas fa-arrow-left me-2"></i> Back
+                            </button>
+                            <button type="button" class="btn btn-primary next-btn" data-step="2">
+                                Next <i class="fas fa-arrow-right ms-2"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 3: Job Preferences -->
+                    <div class="form-step" id="step-3" style="display: none;">
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <label for="desired-jobs" class="form-label">Desired Job Titles</label>
+                                <input type="text" class="form-control" id="desired-jobs" name="desired_job_titles" placeholder="e.g., Product Manager, Senior Designer">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="desired-locations" class="form-label">Desired Locations</label>
+                                <input type="text" class="form-control" id="desired-locations" name="desired_locations" placeholder="e.g., San Francisco, Remote, New York">
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-md-4">
+                                <label for="min-salary" class="form-label">Minimum Salary</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">$</span>
+                                    <input type="number" class="form-control" id="min-salary" name="min_salary" placeholder="70000">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check mt-4">
+                                    <input class="form-check-input" type="checkbox" id="remote-preference" name="remote_preference">
+                                    <label class="form-check-label" for="remote-preference">
+                                        <i class="fas fa-home me-1"></i> Remote Work Preference
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check mt-4">
+                                    <input class="form-check-input" type="checkbox" id="flexible-hours" name="flexible_hours_preference">
+                                    <label class="form-check-label" for="flexible-hours">
+                                        <i class="fas fa-clock me-1"></i> Flexible Hours Preference
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-md-12">
+                                <label class="form-label">Employment Type</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="full-time" name="employment_type_full_time">
+                                    <label class="form-check-label" for="full-time">Full-time</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="part-time" name="employment_type_part_time">
+                                    <label class="form-check-label" for="part-time">Part-time</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="contract" name="employment_type_contract">
+                                    <label class="form-check-label" for="contract">Contract</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between mt-4">
+                            <button type="button" class="btn btn-outline-secondary back-btn" data-step="3">
+                                <i class="fas fa-arrow-left me-2"></i> Back
+                            </button>
+                            <button type="button" class="btn btn-primary next-btn" data-step="3">
+                                Next <i class="fas fa-arrow-right ms-2"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 4: Resume Upload -->
+                    <div class="form-step" id="step-4" style="display: none;">
+                        <div class="row mb-4">
+                            <div class="col-md-12">
+                                <label for="resume-file" class="form-label">Upload Resume</label>
+                                <div class="input-group mb-3">
+                                    <input type="file" class="form-control" id="resume-file" name="resume_file" accept=".pdf,.doc,.docx">
+                                    <label class="input-group-text" for="resume-file">
+                                        <i class="fas fa-upload"></i>
+                                    </label>
+                                </div>
+                                <div class="form-text">Supported formats: PDF, DOC, DOCX (Max size: 5MB)</div>
+                            </div>
+                        </div>
+                        <div class="mb-4 resume-text-container">
+                            <label for="resume-text" class="form-label">Or Paste Resume Text</label>
+                            <textarea class="form-control" id="resume-text" rows="5" placeholder="Paste the text of your resume here for AI analysis..."></textarea>
+                        </div>
+
+                        <div class="alert alert-primary d-flex align-items-center mb-4" role="alert">
+                            <i class="fas fa-info-circle me-2"></i>
+                            <div>
+                                Our AI will analyze your resume to suggest skills you might have missed and identify areas for improvement.
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-between mt-4">
+                            <button type="button" class="btn btn-outline-secondary back-btn" data-step="4">
+                                <i class="fas fa-arrow-left me-2"></i> Back
+                            </button>
+                            <div>
+                                <button type="button" class="btn btn-secondary me-2" id="parse-resume-btn" disabled>
+                                    <i class="fas fa-magic me-2"></i> Analyze Resume
+                                </button>
+                                <button type="submit" class="btn btn-primary" id="save-profile-btn" disabled>
+                                    <i class="fas fa-save me-2"></i> Save Profile
+                                </button>
+                                <button type="button" class="btn btn-warning" id="update-profile-btn" style="display: none;">
+                                    <i class="fas fa-sync-alt me-2"></i> Update Profile
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
-
+    </div>
+</div>
         <!-- Jobs Section -->
         <div class="row jobs-section" style="display: none;">
             <div class="col-md-12 mb-4">
@@ -467,7 +562,28 @@
             
             // Forms
             const profileForm = document.getElementById('profile-form');
+            const nextButtons = document.querySelectorAll('.next-btn');
+            const backButtons = document.querySelectorAll('.back-btn');
+            const stepIndicators = document.querySelectorAll('.step');
+            const formSteps = document.querySelectorAll('.form-step');
             const parseResumeBtn = document.getElementById('parse-resume-btn');
+            const saveProfileBtn = document.getElementById('save-profile-btn');
+            const updateProfileBtn = document.getElementById('update-profile-btn');
+            const resumeFile = document.getElementById('resume-file');
+            const resumeText = document.getElementById('resume-text');
+            
+            // Profile completion tracking
+            let completedSteps = {
+                1: false,
+                2: false,
+                3: false,
+                4: false
+            };
+
+            // Ensure profile section is hidden on page load
+            if (profileSection) {
+                profileSection.style.display = 'none';
+            }
             
             // Check if user is logged in from session storage
             const checkAuth = () => {
@@ -489,6 +605,142 @@
                 document.getElementById('logout-nav').style.display = 'none';
                 return false;
             };
+
+            // Check if a user profile already exists
+            const checkExistingProfile = () => {
+                const userData = sessionStorage.getItem('currentUser');
+                if (userData) {
+                    const user = JSON.parse(userData);
+                    if (user.profileComplete) {
+                        // Show update button instead of save
+                        if (saveProfileBtn) saveProfileBtn.style.display = 'none';
+                        if (updateProfileBtn) updateProfileBtn.style.display = 'inline-block';
+                    }
+                }
+            };
+
+            // Navigate to next step
+    if (nextButtons) {
+        nextButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const currentStep = parseInt(this.getAttribute('data-step'));
+                const nextStep = currentStep + 1;
+                
+                // Validate required fields for the current step
+                if (validateStep(currentStep)) {
+                    // Mark step as completed
+                    completedSteps[currentStep] = true;
+                    
+                    // Hide current step
+                    document.getElementById(`step-${currentStep}`).style.display = 'none';
+                    
+                    // Show next step
+                    document.getElementById(`step-${nextStep}`).style.display = 'block';
+                    
+                    // Update step indicator
+                    stepIndicators.forEach(indicator => {
+                        indicator.classList.remove('active');
+                    });
+                    document.querySelector(`.step[data-step="${nextStep}"]`).classList.add('active');
+                    
+                    // Check if all steps are complete to enable the save button
+                    if (nextStep === 4) {
+                        checkAllStepsComplete();
+                    }
+                }
+            });
+        });
+    }
+    
+    // Navigate to previous step
+    if (backButtons) {
+        backButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const currentStep = parseInt(this.getAttribute('data-step'));
+                const prevStep = currentStep - 1;
+                
+                // Hide current step
+                document.getElementById(`step-${currentStep}`).style.display = 'none';
+                
+                // Show previous step
+                document.getElementById(`step-${prevStep}`).style.display = 'block';
+                
+                // Update step indicator
+                stepIndicators.forEach(indicator => {
+                    indicator.classList.remove('active');
+                });
+                document.querySelector(`.step[data-step="${prevStep}"]`).classList.add('active');
+            });
+        });
+    }
+    
+    // Validate fields in current step
+    function validateStep(step) {
+        let isValid = true;
+        const currentStep = document.getElementById(`step-${step}`);
+        
+        // Check required fields in the current step
+        const requiredFields = currentStep.querySelectorAll('[required]');
+        requiredFields.forEach(field => {
+            if (!field.value.trim()) {
+                isValid = false;
+                field.classList.add('is-invalid');
+            } else {
+                field.classList.remove('is-invalid');
+            }
+        });
+        
+        if (!isValid) {
+            // Show error message
+            let errorAlert = currentStep.querySelector('.validation-error');
+            if (!errorAlert) {
+                errorAlert = document.createElement('div');
+                errorAlert.className = 'alert alert-danger validation-error mt-3';
+                errorAlert.innerHTML = 'Please fill all required fields.';
+                currentStep.appendChild(errorAlert);
+            }
+        } else {
+            // Remove error message if it exists
+            const errorAlert = currentStep.querySelector('.validation-error');
+            if (errorAlert) {
+                errorAlert.remove();
+            }
+        }
+        
+        return isValid;
+    }
+    
+    // Check if resume is uploaded or text is provided
+    function handleResumeInput() {
+        const hasFile = resumeFile && resumeFile.files.length > 0;
+        const hasText = resumeText && resumeText.value.trim() !== '';
+        
+        // Enable the analyze button if there's a file or text
+        if (parseResumeBtn) {
+            parseResumeBtn.disabled = !(hasFile || hasText);
+        }
+        
+        // Update step 4 completion status
+        completedSteps[4] = (hasFile || hasText);
+        checkAllStepsComplete();
+    }
+    
+    // Check if all steps are complete
+    function checkAllStepsComplete() {
+        const allComplete = completedSteps[1] && completedSteps[2] && completedSteps[3] && completedSteps[4];
+        if (saveProfileBtn) {
+            saveProfileBtn.disabled = !allComplete;
+        }
+    }
+    
+    // Resume file and text change handlers
+    if (resumeFile) {
+        resumeFile.addEventListener('change', handleResumeInput);
+    }
+    
+    if (resumeText) {
+        resumeText.addEventListener('input', handleResumeInput);
+    }
             
             // Show section
             const showSection = (section) => {
@@ -588,57 +840,137 @@
             
             // Profile form submission
             if (profileForm) {
-                profileForm.addEventListener('submit', (e) => {
-                    e.preventDefault();
-                    
-                    // Get form data
-                    const formData = new FormData(profileForm);
-                    const profileData = {};
-                    
-                    formData.forEach((value, key) => {
-                        profileData[key] = value;
-                    });
-                    
-                    // Update current user data in session storage
-                    const userData = JSON.parse(sessionStorage.getItem('currentUser')) || {};
-                    const updatedUserData = {...userData, ...profileData};
-                    sessionStorage.setItem('currentUser', JSON.stringify(updatedUserData));
-                    
-                    // Show loading state
-                    const submitBtn = profileForm.querySelector('button[type="submit"]');
-                    const originalBtnText = submitBtn.innerHTML;
-                    submitBtn.disabled = true;
-                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i> Saving...';
-                    
-                    // In a real app, you would send this data to your backend
-                    setTimeout(() => {
-                        submitBtn.disabled = false;
-                        submitBtn.innerHTML = originalBtnText;
-                        
-                        mainSection.forEach(el => el.style.display = 'flex');
-                        profileSection.style.display = 'none';
-                        jobsSection.style.display = 'none';
-                        
-                        addBotMessage("Your profile has been updated! I'll use this information to provide you with more personalized job recommendations. Would you like me to suggest some opportunities based on your profile?");
-                    }, 1000);
-                });
+                profileForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Show loading state
+            const submitBtn = saveProfileBtn || document.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i> Saving...';
+            
+            // Get form data
+            const formData = new FormData(profileForm);
+            const profileData = {};
+            
+            formData.forEach((value, key) => {
+                profileData[key] = value;
+            });
+            
+            // Add file information (in a real app, you would handle file upload)
+            if (resumeFile && resumeFile.files.length > 0) {
+                profileData.resume_filename = resumeFile.files[0].name;
             }
             
+            // Mark profile as complete
+            profileData.profileComplete = true;
+            
+            // Update current user data in session storage
+            const userData = JSON.parse(sessionStorage.getItem('currentUser')) || {};
+            const updatedUserData = {...userData, ...profileData};
+            sessionStorage.setItem('currentUser', JSON.stringify(updatedUserData));
+            
+            // In a real app, you would send this data to your backend
+            setTimeout(() => {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnText;
+                
+                // Show update button instead of save
+                if (saveProfileBtn) saveProfileBtn.style.display = 'none';
+                if (updateProfileBtn) updateProfileBtn.style.display = 'inline-block';
+                
+                // Navigate back to main section
+                const mainSection = document.querySelectorAll('.main-section');
+                const profileSection = document.querySelector('.profile-section');
+                
+                mainSection.forEach(el => el.style.display = 'flex');
+                profileSection.style.display = 'none';
+                
+                // Show success message in chat
+                const chatContainer = document.getElementById('chat-container');
+                if (chatContainer) {
+                    const botMessage = document.createElement('div');
+                    botMessage.className = 'd-flex mb-3';
+                    botMessage.innerHTML = `
+                        <div class="avatar-small avatar-bot me-2">CC</div>
+                        <div class="message bot-message">
+                            <p>Your profile has been saved! I'll use this information to provide you with more personalized job recommendations. Would you like me to suggest some opportunities based on your profile?</p>
+                        </div>
+                    `;
+                    chatContainer.appendChild(botMessage);
+                    chatContainer.scrollTop = chatContainer.scrollHeight;
+                }
+            }, 1500);
+        });
+    }
+    
+    // Update profile button handler
+    if (updateProfileBtn) {
+        updateProfileBtn.addEventListener('click', function() {
+            // In a real app, this would update the profile rather than creating a new one
+            
+            // Show loading state
+            this.disabled = true;
+            this.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i> Updating...';
+            
+            // Get form data
+            const formData = new FormData(profileForm);
+            const profileData = {};
+            
+            formData.forEach((value, key) => {
+                profileData[key] = value;
+            });
+            
+            // Update current user data in session storage
+            const userData = JSON.parse(sessionStorage.getItem('currentUser')) || {};
+            const updatedUserData = {...userData, ...profileData};
+            sessionStorage.setItem('currentUser', JSON.stringify(updatedUserData));
+            
+            // Simulate API call
+            setTimeout(() => {
+                this.disabled = false;
+                this.innerHTML = '<i class="fas fa-sync-alt me-2"></i> Update Profile';
+                
+                // Navigate back to main section
+                const mainSection = document.querySelectorAll('.main-section');
+                const profileSection = document.querySelector('.profile-section');
+                
+                mainSection.forEach(el => el.style.display = 'flex');
+                profileSection.style.display = 'none';
+                
+                // Show success message in chat
+                const chatContainer = document.getElementById('chat-container');
+                if (chatContainer) {
+                    const botMessage = document.createElement('div');
+                    botMessage.className = 'd-flex mb-3';
+                    botMessage.innerHTML = `
+                        <div class="avatar-small avatar-bot me-2">CC</div>
+                        <div class="message bot-message">
+                            <p>Your profile has been updated! Is there anything specific in your career journey you'd like assistance with today?</p>
+                        </div>
+                    `;
+                    chatContainer.appendChild(botMessage);
+                    chatContainer.scrollTop = chatContainer.scrollHeight;
+                }
+            }, 1500);
+        });
+    }
+            
             if (parseResumeBtn) {
-                parseResumeBtn.addEventListener('click', (e) => {
-                    const resumeText = document.getElementById('resume-text').value;
+                parseResumeBtn.addEventListener('click', function() {
+                    const hasFile = resumeFile && resumeFile.files.length > 0;
+                    const hasText = resumeText && resumeText.value.trim() !== '';
                     
-                    if (!resumeText) {
-                        alert('Please paste your resume text first.');
+                    if (!hasFile && !hasText) {
+                        alert('Please upload a resume file or paste resume text first.');
                         return;
                     }
                     
-                    // Show analysis in progress
-                    parseResumeBtn.disabled = true;
-                    parseResumeBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i> Analyzing...';
+                    // Show loading state
+                    this.disabled = true;
+                    this.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i> Analyzing...';
                     
-                    // In a real app, you would send this to an API for analysis
-                    // For demo purposes, we'll simulate a response
+                    // Simulate API call for resume analysis
                     setTimeout(() => {
                         // Auto-fill profile form based on "parsed" resume
                         document.getElementById('skills').value = 'Project Management, Team Leadership, Strategic Planning, Data Analysis, Stakeholder Communication';
@@ -646,23 +978,37 @@
                         document.getElementById('current-job').value = 'Senior Project Manager';
                         
                         // Re-enable button
-                        parseResumeBtn.disabled = false;
-                        parseResumeBtn.innerHTML = '<i class="fas fa-magic me-2"></i> Analyze Resume';
+                        this.disabled = false;
+                        this.innerHTML = '<i class="fas fa-magic me-2"></i> Analyze Resume';
                         
                         // Show success message
-                        const alert = document.createElement('div');
-                        alert.className = 'alert alert-success';
-                        alert.role = 'alert';
-                        alert.innerHTML = 'Resume analysis complete! We\'ve filled in some fields based on your resume.';
+                        const resumeContainer = document.querySelector('.form-step#step-4');
+                        const successAlert = document.createElement('div');
+                        successAlert.className = 'alert alert-success mt-3';
+                        successAlert.innerHTML = '<i class="fas fa-check-circle me-2"></i> Resume analysis complete! We\'ve filled in some fields based on your resume.';
+                        resumeContainer.appendChild(successAlert);
                         
-                        const resumeContainer = document.querySelector('.resume-parser');
-                        resumeContainer.prepend(alert);
+                        // Enable save button after successful analysis
+                        if (saveProfileBtn) {
+                            saveProfileBtn.disabled = false;
+                        }
                         
                         // Remove alert after 5 seconds
                         setTimeout(() => {
-                            alert.remove();
+                            successAlert.remove();
                         }, 5000);
-                    }, 1500);
+                        
+                        // Go back to step 2 to show the analyzed skills
+                        document.getElementById('step-4').style.display = 'none';
+                        document.getElementById('step-2').style.display = 'block';
+                        
+                        // Update step indicator
+                        stepIndicators.forEach(indicator => {
+                            indicator.classList.remove('active');
+                        });
+                        document.querySelector('.step[data-step="2"]').classList.add('active');
+                        
+                    }, 2000);
                 });
             }
             
@@ -901,8 +1247,8 @@
                 }, 1500);
             }
             
-            // Check auth status on page load
             checkAuth();
+            checkExistingProfile();
         });
     </script>
 </body>

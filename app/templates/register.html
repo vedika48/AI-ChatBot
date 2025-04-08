@@ -164,6 +164,7 @@
             const passwordInput = document.getElementById('register-password');
             const progressBar = document.querySelector('.progress-bar');
             const passwordStrength = document.getElementById('password-strength');
+            const API_URL = 'http://localhost:3000/api'; // Update with your actual API URL
             
             // Password strength meter
             passwordInput.addEventListener('input', function() {
@@ -198,44 +199,111 @@
                 passwordStrength.style.color = color;
             });
             
-            // Register form submission
-            registerForm.addEventListener('submit', function(e) {
+            // Form validation and submission
+            registerForm.addEventListener('submit', async function(e) {
                 e.preventDefault();
+                
+                // Form validation
                 const email = document.getElementById('register-email').value;
                 const firstName = document.getElementById('register-first-name').value;
                 const lastName = document.getElementById('register-last-name').value;
                 const password = document.getElementById('register-password').value;
                 const confirmPassword = document.getElementById('register-confirm-password').value;
                 
+                // Basic validation
                 if (password !== confirmPassword) {
-                    alert('Passwords do not match!');
+                    showAlert('Passwords do not match!', 'danger');
                     return;
                 }
                 
-                // Show loading state on button
-                const submitBtn = this.querySelector('button[type="submit"]');
+                if (password.length < 8) {
+                    showAlert('Password must be at least 8 characters', 'danger');
+                    return;
+                }
+                
+                // Show loading state
+                const submitBtn = registerForm.querySelector('button[type="submit"]');
                 const originalBtnText = submitBtn.innerHTML;
                 submitBtn.disabled = true;
                 submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i> Registering...';
                 
-                // In a real app, you would make an API call to register the user
-                // For demo purposes, we'll simulate a successful registration with a delay
-                setTimeout(() => {
-                    // Save user data to sessionStorage or localStorage
-                    const userData = {
-                        email: email,
-                        first_name: firstName,
-                        last_name: lastName,
-                        isLoggedIn: true
-                    };
+                try {
+                    // Send data to API
+                    const response = await fetch(`${API_URL}/users/register`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            email,
+                            first_name: firstName,
+                            last_name: lastName,
+                            password
+                        })
+                    });
                     
-                    sessionStorage.setItem('currentUser', JSON.stringify(userData));
+                    const data = await response.json();
                     
-                    // Redirect to home page
-                    window.location.href = 'index.html';
-                }, 1000);
+                    if (!response.ok) {
+                        throw new Error(data.message || 'Registration failed');
+                    }
+                    
+                    // On success
+                    if (data.success) {
+                        // Store user in session storage (without password)
+                        const userData = {
+                            userId: data.user.id,
+                            email: data.user.email,
+                            first_name: data.user.first_name,
+                            last_name: data.user.last_name,
+                            isLoggedIn: true
+                        };
+                        
+                        sessionStorage.setItem('currentUser', JSON.stringify(userData));
+                        
+                        // Show success message and redirect
+                        showAlert('Registration successful! Redirecting...', 'success');
+                        
+                        // Redirect after a short delay
+                        setTimeout(() => {
+                            window.location.href = 'index.html';
+                        }, 1500);
+                    }
+                } catch (error) {
+                    console.error('Registration error:', error);
+                    showAlert(error.message || 'Registration failed. Please try again.', 'danger');
+                    
+                    // Reset button
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalBtnText;
+                }
             });
-        });
+            
+            // Helper function to show alerts
+            function showAlert(message, type) {
+                // Remove any existing alerts
+                const existingAlerts = document.querySelectorAll('.alert');
+                existingAlerts.forEach(alert => alert.remove());
+                
+                // Create new alert
+                const alertDiv = document.createElement('div');
+                alertDiv.className = `alert alert-${type} alert-dismissible fade show mt-3`;
+                alertDiv.role = 'alert';
+                alertDiv.innerHTML = `
+                    ${message}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                `;
+                
+                // Insert alert before the form
+                registerForm.parentNode.insertBefore(alertDiv, registerForm);
+                
+                // Auto-dismiss after 5 seconds
+                setTimeout(() => {
+                    alertDiv.classList.remove('show');
+                    setTimeout(() => alertDiv.remove(), 300);
+                }, 5000);
+            }
+        });        
     </script>
 </body>
 </html>

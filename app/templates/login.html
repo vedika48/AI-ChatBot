@@ -152,55 +152,114 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Form submission
             const loginForm = document.getElementById('login-form');
-            const togglePasswordBtn = document.getElementById('toggle-password');
+            const API_URL = 'http://localhost:3000/api';
             
-            // Toggle password visibility
-            togglePasswordBtn.addEventListener('click', function() {
-                const passwordInput = document.getElementById('login-password');
-                const icon = this.querySelector('i');
-                
-                if (passwordInput.type === 'password') {
-                    passwordInput.type = 'text';
-                    icon.classList.remove('fa-eye');
-                    icon.classList.add('fa-eye-slash');
-                } else {
-                    passwordInput.type = 'password';
-                    icon.classList.remove('fa-eye-slash');
-                    icon.classList.add('fa-eye');
-                }
-            });
+            if (loginForm) {
+                loginForm.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    
+                    const email = document.getElementById('login-email').value;
+                    const password = document.getElementById('login-password').value;
+                    
+                    // Show loading state
+                    const submitBtn = loginForm.querySelector('button[type="submit"]');
+                    const originalBtnText = submitBtn.innerHTML;
+                    submitBtn.disabled = true;
+                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i> Logging in...';
+                    
+                    try {
+                        // Send login request to API
+                        const response = await fetch(`${API_URL}/users/login`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({ email, password })
+                        });
+                        
+                        const data = await response.json();
+                        
+                        if (!response.ok) {
+                            throw new Error(data.message || 'Login failed');
+                        }
+                        
+                        // On success
+                        if (data.success) {
+                            // Store user in session storage (without password)
+                            const userData = {
+                                userId: data.user.id,
+                                email: data.user.email,
+                                first_name: data.user.first_name,
+                                last_name: data.user.last_name,
+                                isLoggedIn: true
+                            };
+                            
+                            // If user has profile data, include it
+                            if (data.user.profile) {
+                                userData.profile = data.user.profile;
+                            }
+                            
+                            sessionStorage.setItem('currentUser', JSON.stringify(userData));
+                            
+                            // Show success message and redirect
+                            showAlert('Login successful! Redirecting...', 'success');
+                            
+                            // Redirect after a short delay
+                            setTimeout(() => {
+                                window.location.href = 'index.html';
+                            }, 1500);
+                        }
+                    } catch (error) {
+                        console.error('Login error:', error);
+                        showAlert(error.message || 'Login failed. Please check your credentials.', 'danger');
+                        
+                        // Reset button
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = originalBtnText;
+                    }
+                });
+            }
             
-            // Login form submission
-            loginForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                const email = document.getElementById('login-email').value;
-                const password = document.getElementById('login-password').value;
+            // Helper function to show alerts (same as in register.js)
+            function showAlert(message, type) {
+                // Remove any existing alerts
+                const existingAlerts = document.querySelectorAll('.alert');
+                existingAlerts.forEach(alert => alert.remove());
                 
-                // Show loading state on button
-                const submitBtn = this.querySelector('button[type="submit"]');
-                const originalBtnText = submitBtn.innerHTML;
-                submitBtn.disabled = true;
-                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i> Logging in...';
+                // Create new alert
+                const alertDiv = document.createElement('div');
+                alertDiv.className = `alert alert-${type} alert-dismissible fade show mt-3`;
+                alertDiv.role = 'alert';
+                alertDiv.innerHTML = `
+                    ${message}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                `;
                 
-                // In a real app, you would make an API call to authenticate
-                // For demo purposes, we'll simulate a successful login with a delay
+                // Insert alert before the form
+                loginForm.parentNode.insertBefore(alertDiv, loginForm);
+                
+                // Auto-dismiss after 5 seconds
                 setTimeout(() => {
-                    // Save user data to sessionStorage or localStorage
-                    const userData = {
-                        email: email,
-                        first_name: 'Jane',
-                        last_name: 'Doe',
-                        isLoggedIn: true
-                    };
-                    
-                    sessionStorage.setItem('currentUser', JSON.stringify(userData));
-                    
-                    // Redirect to home page
-                    window.location.href = 'index.html';
-                }, 1000);
-            });
+                    alertDiv.classList.remove('show');
+                    setTimeout(() => alertDiv.remove(), 300);
+                }, 5000);
+            }
+            const togglePassword = document.getElementById('toggle-password');
+const passwordInput = document.getElementById('login-password');
+
+if (togglePassword && passwordInput) {
+    togglePassword.addEventListener('click', function() {
+        // Toggle the password field type between 'password' and 'text'
+        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordInput.setAttribute('type', type);
+        
+        // Toggle the eye icon
+        const eyeIcon = this.querySelector('i');
+        eyeIcon.classList.toggle('fa-eye');
+        eyeIcon.classList.toggle('fa-eye-slash');
+    });
+}
         });
     </script>
 </body>
