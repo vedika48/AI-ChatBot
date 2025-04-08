@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Compass - Job Search Assistant for Women</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-compass me-2"></i>Career Compass
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#" id="home-link">
+                            <i class="fas fa-home me-1"></i> Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="profile-link">
+                            <i class="fas fa-user-circle me-1"></i> Profile
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="jobs-link">
+                            <i class="fas fa-briefcase me-1"></i> Jobs
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="resources-link">
+                            <i class="fas fa-book me-1"></i> Resources
+                        </a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item" id="login-nav">
+                        <a class="nav-link" href="#" id="login-link">
+                            <i class="fas fa-sign-in-alt me-1"></i> Login
+                        </a>
+                    </li>
+                    <li class="nav-item" id="register-nav">
+                        <a class="nav-link" href="#" id="register-link">
+                            <i class="fas fa-user-plus me-1"></i> Register
+                        </a>
+                    </li>
+                    <li class="nav-item" id="logout-nav" style="display: none;">
+                        <a class="nav-link" href="#" id="logout-link">
+                            <i class="fas fa-sign-out-alt me-1"></i> Logout
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card welcome-card mb-4">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-md-8">
+                                <h3 class="card-title mb-3">Your AI Career Assistant</h3>
+                                <p class="card-text">Welcome to Career Compass! I'm your personal AI assistant specializing in helping women find their ideal jobs. I can help with job searches, resume building, interview preparation, and addressing gender-specific challenges in the workplace.</p>
+                                <button class="btn btn-primary mt-2" id="get-started-btn">
+                                    <i class="fas fa-rocket me-2"></i>Get Started
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Chatbot Section -->
+        <div class="row main-section">
+            <div class="col-lg-8">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5><i class="fas fa-comments me-2"></i>Chat with Career Assistant</h5>
+                        <div>
+                            <button class="btn btn-sm btn-outline-secondary" id="clear-chat-btn">
+                                <i class="fas fa-eraser me-1"></i> Clear
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="chat-container" id="chat-container">
+                            <div class="d-flex mb-3">
+                                <div class="avatar-small avatar-bot me-2">CC</div>
+                                <div class="message bot-message">
+                                    <p>Hi there! I'm your AI career assistant. How can I help you today? You can ask me about job searches, resume tips, interview preparation, or companies that are known for supporting women in the workplace.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="user-input" placeholder="Type your message here...">
+                            <button class="btn btn-primary" id="send-button">
+                                <i class="fas fa-paper-plane me-1"></i> Send
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mt-4 mt-lg-0">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5><i class="fas fa-lightbulb me-2"></i>Suggested Queries</h5>
+                    </div>
+                    <div class="card-body">
+                        <button class="btn btn-outline-primary mb-2 w-100 suggestion">
+                            <i class="fas fa-search me-2"></i>Find software engineer jobs in San Francisco
+                        </button>
+                        <button class="btn btn-outline-primary mb-2 w-100 suggestion">
+                            <i class="fas fa-user-tie me-2"></i>How to prepare for a technical interview
+                        </button>
+                        <button class="btn btn-outline-primary mb-2 w-100 suggestion">
+                            <i class="fas fa-baby me-2"></i>Companies with good maternity leave policies
+                        </button>
+                        <button class="btn btn-outline-primary mb-2 w-100 suggestion">
+                            <i class="fas fa-chart-bar me-2"></i>What skills do I need for data science?
+                        </button>
+                        <button class="btn btn-outline-primary mb-2 w-100 suggestion">
+                            <i class="fas fa-file-alt me-2"></i>Help me improve my resume
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <h5><i class="fas fa-star me-2"></i>Success Stories</h5>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="testimonial-card">
+                            <p class="testimonial-text">"Career Compass helped me negotiate a 20% higher salary than what was initially offered. The interview prep was invaluable!"</p>
+                            <div class="testimonial-author">
+                                <div class="testimonial-avatar">SJ</div>
+                                <div class="testimonial-info">
+                                    <h5>Sarah J.</h5>
+                                    <p>Software Engineer</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonial-card">
+                            <p class="testimonial-text">"Found my dream job at a company with amazing family leave policies. This tool understands the unique challenges women face."</p>
+                            <div class="testimonial-author">
+                                <div class="testimonial-avatar">MT</div>
+                                <div class="testimonial-info">
+                                    <h5>Mia T.</h5>
+                                    <p>Product Manager</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features Section -->
+        <div class="row features-section main-section mt-5">
+            <div class="col-12 text-center mb-4">
+                <h3>How Career Compass Helps You Succeed</h3>
+                <p class="text-muted">Tools and resources designed specifically for women in the workplace</p>
+            </div>
+            <div class="col-md-3">
+                <div class="card feature-card">
+                    <div class="feature-icon mx-auto">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h5>Smart Job Search</h5>
+                    <p>Find positions at companies known for supporting women's career growth</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card feature-card">
+                    <div class="feature-icon mx-auto">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h5>Resume Builder</h5>
+                    <p>Create standout resumes that highlight your achievements effectively</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card feature-card">
+                    <div class="feature-icon mx-auto">
+                        <i class="fas fa-comments-dollar"></i>
+                    </div>
+                    <h5>Negotiation Coach</h5>
+                    <p>Get personalized advice to negotiate better pay and benefits</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card feature-card">
+                    <div class="feature-icon mx-auto">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h5>Community Support</h5>
+                    <p>Connect with other women professionals in your field</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Profile Section -->
+        <div class="row profile-section">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5><i class="fas fa-user-circle me-2"></i>My Profile</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="step-indicator mb-4">
+                            <div class="step active">
+                                <div class="step-circle">1</div>
+                                <div class="step-title">Basic Info</div>
+                            </div>
+                            <div class="step">
+                                <div class="step-circle">2</div>
+                                <div class="step-title">Skills & Experience</div>
+                            </div>
+                            <div class="step">
+                                <div class="step-circle">3</div>
+                                <div class="step-title">Job Preferences</div>
+                            </div>
+                            <div class="step">
+                                <div class="step-circle">4</div>
+                                <div class="step-title">Resume Upload</div>
+                            </div>
+                        </div>
+                        
+                        <form id="profile-form">
+                            <div class="row mb-4">
+                                <div class="col-md-6">
+                                    <label for="first-name" class="form-label">First Name</label>
+                                    <input type="text" class="form-control" id="first-name" name="first_name">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="last-name" class="form-label">Last Name</label>
+                                    <input type="text" class="form-control" id="last-name" name="last_name">
+                                </div>
+                            </div>
+                            <div class="row mb-4">
+                                <div class="col-md-6">
+                                    <label for="current-job" class="form-label">Current Job Title</label>
+                                    <input type="text" class="form-control" id="current-job" name="current_job_title">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="industry" class="form-label">
+                                        Industry 
+                                        <i class="fas fa-info-circle tooltip-icon" data-bs-toggle="tooltip" title="Select the industry that best matches your experience"></i>
+                                    </label>
+                                    <select class="form-select" id="industry" name="industry">
+                                        <option value="">Select Industry</option>
+                                        <option value="Technology">Technology</option>
+                                        <option value="Healthcare">Healthcare</option>
+                                        <option value="Finance">Finance</option>
+                                        <option value="Education">Education</option>
+                                        <option value="Marketing">Marketing</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row mb-4">
+                                <div class="col-md-12">
+                                    <label for="skills" class="form-label">Skills</label>
+                                    <input type="text" class="form-control" id="skills" name="skills" placeholder="e.g., Project Management, Data Analysis, Leadership">
+                                    <div class="form-text">Separate skills with commas</div>
+                                </div>
+                            </div>
+                            <div class="row mb-4">
+                                <div class="col-md-6">
+                                    <label for="desired-jobs" class="form-label">Desired Job Titles</label>
+                                    <input type="text" class="form-control" id="desired-jobs" name="desired_job_titles" placeholder="e.g., Product Manager, Senior Designer">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="desired-locations" class="form-label">Desired Locations</label>
+                                    <input type="text" class="form-control" id="desired-locations" name="desired_locations" placeholder="e.g., San Francisco, Remote, New York">
+                                </div>
+                            </div>
+                            <div class="row mb-4">
+                                <div class="col-md-4">
+                                    <label for="min-salary" class="form-label">Minimum Salary</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text">$</span>
+                                        <input type="number" class="form-control" id="min-salary" name="min_salary" placeholder="70000">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-check mt-4">
+                                        <input class="form-check-input" type="checkbox" id="remote-preference" name="remote_preference">
+                                        <label class="form-check-label" for="remote-preference">
+                                            <i class="fas fa-home me-1"></i> Remote Work Preference
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-check mt-4">
+                                        <input class="form-check-input" type="checkbox" id="flexible-hours" name="flexible_hours_preference">
+                                        <label class="form-check-label" for="flexible-hours">
+                                            <i class="fas fa-clock me-1"></i> Flexible Hours Preference
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <label for="resume-text" class="form-label">Paste Resume Text for Analysis</label>
+                                <textarea class="form-control" id="resume-text" rows="5" placeholder="Paste the text of your resume here for AI analysis..."></textarea>
+                            </div>
+
+                            <div class="alert alert-primary d-flex align-items-center mb-4" role="alert">
+                                <i class="fas fa-info-circle me-2"></i>
+                                <div>
+                                    Our AI will analyze your resume to suggest skills you might have missed and identify areas for improvement.
+                                </div>
+                            </div>
+
+                            <div class="d-flex justify-content-between">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-save me-2"></i> Save Profile
+                                </button>
+                                <button type="button" class="btn btn-secondary" id="parse-resume-btn">
+                                    <i class="fas fa-magic me-2"></i> Analyze Resume
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Jobs Section -->
+        <div class="row jobs-section" style="display: none;">
+            <div class="col-md-12 mb-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5><i class="fas fa-search me-2"></i>Find Your Ideal Job</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <input type="text" class="form-control" id="search-keyword" placeholder="Job title, keywords, or company">
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <input type="text" class="form-control" id="search-location" placeholder="City, state, or remote">
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <select class="form-select" id="search-category">
+                                    <option value="">All Categories</option>
+                                    <option value="tech">Technology</option>
+                                    <option value="healthcare">Healthcare</option>
+                                    <option value="finance">Finance</option>
+                                    <option value="education">Education</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2 mb-3">
+                                <button class="btn btn-primary w-100" id="search-btn">
+                                    <i class="fas fa-search me-2"></i>Search
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="filter-remote" value="remote">
+                                    <label class="form-check-label" for="filter-remote">Remote Only</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="filter-female-friendly" value="female-friendly">
+                                    <label class="form-check-label" for="filter-female-friendly">Female-Friendly Companies</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="filter-flexible" value="flexible">
+                                    <label class="form-check-label" for="filter-flexible">Flexible Hours</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="filter-parental" value="parental">
+                                    <label class="form-check-label" for="filter-parental">Good Parental Benefits</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-12">
+                <div id="jobs-container">
+                    <!-- Job listings will be dynamically inserted here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5 class="footer-title">Career Compass</h5>
+                    <p class="mb-3">Empowering women to navigate their professional journey with confidence and success.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <h5 class="footer-title">Navigation</h5>
+                    <a href="#" class="footer-link">Home</a>
+                    <a href="#" class="footer-link">Jobs</a>
+                    <a href="#" class="footer-link">Resources</a>
+                    <a href="#" class="footer-link">About Us</a>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5 class="footer-title">Resources</h5>
+                    <a href="#" class="footer-link">Resume Templates</a>
+                    <a href="#" class="footer-link">Interview Tips</a>
+                    <a href="#" class="footer-link">Negotiation Guide</a>
+                    <a href="#" class="footer-link">Career Development</a>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5 class="footer-title">Contact Us</h5>
+                    <a href="#" class="footer-link"><i class="fas fa-envelope me-2"></i>support@careercompass.com</a>
+                    <a href="#" class="footer-link"><i class="fas fa-phone me-2"></i>(555) 123-4567</a>
+                    <a href="#" class="footer-link"><i class="fas fa-map-marker-alt me-2"></i>San Francisco, CA</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-center copyright">
+                    <p>&copy; 2025 Career Compass. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // DOM elements
+            const chatContainer = document.getElementById('chat-container');
+            const userInput = document.getElementById('user-input');
+            const sendButton = document.getElementById('send-button');
+            const suggestions = document.querySelectorAll('.suggestion');
+            
+            // Navigation links
+            const homeLink = document.getElementById('home-link');
+            const profileLink = document.getElementById('profile-link');
+            const loginLink = document.getElementById('login-link');
+            const registerLink = document.getElementById('register-link');
+            const logoutLink = document.getElementById('logout-link');
+            const jobsLink = document.getElementById('jobs-link');
+            const getStartedBtn = document.getElementById('get-started-btn');
+            const clearChatBtn = document.getElementById('clear-chat-btn');
+            
+            // Sections
+            const mainSection = document.querySelectorAll('.main-section');
+            const profileSection = document.querySelector('.profile-section');
+            const jobsSection = document.querySelector('.jobs-section');
+            
+            // Forms
+            const profileForm = document.getElementById('profile-form');
+            const parseResumeBtn = document.getElementById('parse-resume-btn');
+            
+            // Check if user is logged in from session storage
+            const checkAuth = () => {
+                const userData = sessionStorage.getItem('currentUser');
+                let currentUser = null;
+                
+                if (userData) {
+                    currentUser = JSON.parse(userData);
+                    if (currentUser.isLoggedIn) {
+                        document.getElementById('login-nav').style.display = 'none';
+                        document.getElementById('register-nav').style.display = 'none';
+                        document.getElementById('logout-nav').style.display = 'block';
+                        return true;
+                    }
+                }
+                
+                document.getElementById('login-nav').style.display = 'block';
+                document.getElementById('register-nav').style.display = 'block';
+                document.getElementById('logout-nav').style.display = 'none';
+                return false;
+            };
+            
+            // Show section
+            const showSection = (section) => {
+                mainSection.forEach(el => el.style.display = 'none');
+                profileSection.style.display = 'none';
+                jobsSection.style.display = 'none';
+                
+                section.style.display = 'flex';
+            };
+            
+            // Navigation handlers - modified to use page redirects for login/register
+            homeLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                mainSection.forEach(el => el.style.display = 'flex');
+                profileSection.style.display = 'none';
+                jobsSection.style.display = 'none';
+            });
+            
+            profileLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (checkAuth()) {
+                    mainSection.forEach(el => el.style.display = 'none');
+                    profileSection.style.display = 'flex';
+                    jobsSection.style.display = 'none';
+                    
+                    // Populate profile form with user data from session storage
+                    const userData = JSON.parse(sessionStorage.getItem('currentUser'));
+                    if (userData) {
+                        document.getElementById('first-name').value = userData.first_name || '';
+                        document.getElementById('last-name').value = userData.last_name || '';
+                        document.getElementById('current-job').value = userData.current_job_title || '';
+                        // Set selected option for industry
+                        const industrySelect = document.getElementById('industry');
+                        if (industrySelect && userData.industry) {
+                            for (let i = 0; i < industrySelect.options.length; i++) {
+                                if (industrySelect.options[i].value === userData.industry) {
+                                    industrySelect.selectedIndex = i;
+                                    break;
+                                }
+                            }
+                        }
+                        document.getElementById('skills').value = userData.skills || '';
+                        document.getElementById('desired-jobs').value = userData.desired_job_titles || '';
+                        document.getElementById('desired-locations').value = userData.desired_locations || '';
+                        document.getElementById('min-salary').value = userData.min_salary || '';
+                        document.getElementById('remote-preference').checked = userData.remote_preference || false;
+                        document.getElementById('flexible-hours').checked = userData.flexible_hours_preference || false;
+                    }
+                } else {
+                    // Redirect to login page if not logged in
+                    window.location.href = 'login.html';
+                }
+            });
+            
+            // Updated to redirect to separate login page
+            loginLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.location.href = 'login.html';
+            });
+            
+            // Updated to redirect to separate register page
+            registerLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.location.href = 'register.html';
+            });
+            
+            jobsLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                mainSection.forEach(el => el.style.display = 'none');
+                profileSection.style.display = 'none';
+                jobsSection.style.display = 'flex';
+                
+                // Load jobs
+                loadJobs();
+            });
+            
+            getStartedBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                // Focus on chat input
+                userInput.focus();
+                // Add a welcome message if not already present
+                if (chatContainer.childElementCount <= 1) {
+                    addBotMessage("I'm excited to help you with your career journey! What specific aspect of your job search would you like assistance with today?");
+                }
+            });
+            
+            logoutLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                // Logout logic - remove user from session storage
+                sessionStorage.removeItem('currentUser');
+                checkAuth();
+                mainSection.forEach(el => el.style.display = 'flex');
+                profileSection.style.display = 'none';
+                jobsSection.style.display = 'none';
+                addBotMessage("You've been logged out successfully. Feel free to ask me any job-related questions!");
+            });
+            
+            // Profile form submission
+            if (profileForm) {
+                profileForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    
+                    // Get form data
+                    const formData = new FormData(profileForm);
+                    const profileData = {};
+                    
+                    formData.forEach((value, key) => {
+                        profileData[key] = value;
+                    });
+                    
+                    // Update current user data in session storage
+                    const userData = JSON.parse(sessionStorage.getItem('currentUser')) || {};
+                    const updatedUserData = {...userData, ...profileData};
+                    sessionStorage.setItem('currentUser', JSON.stringify(updatedUserData));
+                    
+                    // Show loading state
+                    const submitBtn = profileForm.querySelector('button[type="submit"]');
+                    const originalBtnText = submitBtn.innerHTML;
+                    submitBtn.disabled = true;
+                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i> Saving...';
+                    
+                    // In a real app, you would send this data to your backend
+                    setTimeout(() => {
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = originalBtnText;
+                        
+                        mainSection.forEach(el => el.style.display = 'flex');
+                        profileSection.style.display = 'none';
+                        jobsSection.style.display = 'none';
+                        
+                        addBotMessage("Your profile has been updated! I'll use this information to provide you with more personalized job recommendations. Would you like me to suggest some opportunities based on your profile?");
+                    }, 1000);
+                });
+            }
+            
+            if (parseResumeBtn) {
+                parseResumeBtn.addEventListener('click', (e) => {
+                    const resumeText = document.getElementById('resume-text').value;
+                    
+                    if (!resumeText) {
+                        alert('Please paste your resume text first.');
+                        return;
+                    }
+                    
+                    // Show analysis in progress
+                    parseResumeBtn.disabled = true;
+                    parseResumeBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i> Analyzing...';
+                    
+                    // In a real app, you would send this to an API for analysis
+                    // For demo purposes, we'll simulate a response
+                    setTimeout(() => {
+                        // Auto-fill profile form based on "parsed" resume
+                        document.getElementById('skills').value = 'Project Management, Team Leadership, Strategic Planning, Data Analysis, Stakeholder Communication';
+                        document.getElementById('industry').value = 'Technology';
+                        document.getElementById('current-job').value = 'Senior Project Manager';
+                        
+                        // Re-enable button
+                        parseResumeBtn.disabled = false;
+                        parseResumeBtn.innerHTML = '<i class="fas fa-magic me-2"></i> Analyze Resume';
+                        
+                        // Show success message
+                        const alert = document.createElement('div');
+                        alert.className = 'alert alert-success';
+                        alert.role = 'alert';
+                        alert.innerHTML = 'Resume analysis complete! We\'ve filled in some fields based on your resume.';
+                        
+                        const resumeContainer = document.querySelector('.resume-parser');
+                        resumeContainer.prepend(alert);
+                        
+                        // Remove alert after 5 seconds
+                        setTimeout(() => {
+                            alert.remove();
+                        }, 5000);
+                    }, 1500);
+                });
+            }
+            
+            // Clear chat function
+            if (clearChatBtn) {
+                clearChatBtn.addEventListener('click', () => {
+                    // Clear all messages except the first one (welcome message)
+                    while (chatContainer.childElementCount > 1) {
+                        chatContainer.removeChild(chatContainer.lastChild);
+                    }
+                    addBotMessage("Chat history cleared! How else can I help with your job search today?");
+                });
+            }
+            
+            // Add bot message to chat
+            function addBotMessage(message) {
+                const botMessageDiv = document.createElement('div');
+                botMessageDiv.className = 'message bot-message';
+                botMessageDiv.innerHTML = `
+                    <div class="avatar">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="message-content">
+                        <p>${message}</p>
+                    </div>
+                `;
+                chatContainer.appendChild(botMessageDiv);
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+            }
+            
+            // Add user message to chat
+            function addUserMessage(message) {
+                const userMessageDiv = document.createElement('div');
+                userMessageDiv.className = 'message user-message';
+                userMessageDiv.innerHTML = `
+                    <div class="message-content">
+                        <p>${message}</p>
+                    </div>
+                    <div class="avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                `;
+                chatContainer.appendChild(userMessageDiv);
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+            }
+            
+            // Process user input
+            function processUserInput() {
+                const message = userInput.value.trim();
+                if (message === '') return;
+                
+                // Add user message to chat
+                addUserMessage(message);
+                
+                // Clear input
+                userInput.value = '';
+                
+                // Process message and get response (in a real app, this would call an API)
+                generateBotResponse(message);
+            }
+            
+            // Generate bot response based on user input
+            function generateBotResponse(userMessage) {
+                // Show typing indicator
+                const typingIndicator = document.createElement('div');
+                typingIndicator.className = 'message bot-message typing';
+                typingIndicator.innerHTML = `
+                    <div class="avatar">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="message-content">
+                        <div class="typing-indicator">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                `;
+                chatContainer.appendChild(typingIndicator);
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+                
+                // In a real app, this would call an API for a response
+                // For demo purposes, we'll simulate a delay and provide canned responses
+                setTimeout(() => {
+                    // Remove typing indicator
+                    chatContainer.removeChild(typingIndicator);
+                    
+                    let botResponse = "";
+                    const lowerCaseMsg = userMessage.toLowerCase();
+                    
+                    // Simple response matching logic
+                    if (lowerCaseMsg.includes('resume') || lowerCaseMsg.includes('cv')) {
+                        botResponse = "Looking to improve your resume? Here are some tips: 1) Tailor it to each job application, 2) Use action verbs and quantify achievements, 3) Keep it concise at 1-2 pages. Would you like more specific advice on any section of your resume?";
+                    } else if (lowerCaseMsg.includes('interview') || lowerCaseMsg.includes('prepare')) {
+                        botResponse = "Preparing for interviews is crucial! Research the company beforehand, practice common questions, prepare your own questions, and don't forget to follow up afterward. Would you like some common interview questions for your industry?";
+                    } else if (lowerCaseMsg.includes('salary') || lowerCaseMsg.includes('negotiate')) {
+                        botResponse = "Salary negotiation is an important skill. Research industry standards for your role and location, highlight your value and achievements, and practice your negotiation approach. Remember, the first offer is rarely the best offer. Would you like specific negotiation phrases to use?";
+                    } else if (lowerCaseMsg.includes('job') && (lowerCaseMsg.includes('find') || lowerCaseMsg.includes('search'))) {
+                        botResponse = "For an effective job search, I recommend: 1) Updating your LinkedIn profile, 2) Setting up job alerts on major platforms, 3) Leveraging your network, and 4) Following up on applications. Would you like to see some job recommendations based on your profile?";
+                    } else if (lowerCaseMsg.includes('cover letter')) {
+                        botResponse = "An effective cover letter should be personalized for each application, connect your experience to the job requirements, and express enthusiasm for the specific company. Would you like a template or more guidance?";
+                    } else if (lowerCaseMsg.includes('linkedin') || lowerCaseMsg.includes('profile')) {
+                        botResponse = "A strong LinkedIn profile increases your visibility to recruiters. Make sure you have a professional photo, compelling headline, detailed experience section, and recommendations. Would you like specific tips to optimize your LinkedIn presence?";
+                    } else if (lowerCaseMsg.includes('thank') || lowerCaseMsg.includes('bye')) {
+                        botResponse = "You're welcome! Feel free to return anytime you need career advice or job search assistance. Good luck with your professional journey!";
+                    } else {
+                        botResponse = "Thanks for sharing. As your career assistant, I can help with resume writing, interview preparation, job search strategies, salary negotiation, and more. What specific aspect of your career journey would you like guidance on?";
+                    }
+                    
+                    // Add bot response to chat
+                    addBotMessage(botResponse);
+                }, 1000);
+            }
+            
+            // Event listeners for chat
+            if (sendButton) {
+                sendButton.addEventListener('click', processUserInput);
+            }
+            
+            if (userInput) {
+                userInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        processUserInput();
+                    }
+                });
+            }
+            
+            // Suggestion chips
+            if (suggestions) {
+                suggestions.forEach(suggestion => {
+                    suggestion.addEventListener('click', () => {
+                        userInput.value = suggestion.textContent;
+                        processUserInput();
+                    });
+                });
+            }
+            
+            // Job loading function
+            function loadJobs() {
+                const jobsContainer = document.querySelector('.jobs-container');
+                if (!jobsContainer) return;
+                
+                // Clear existing jobs
+                jobsContainer.innerHTML = '<div class="loading"><i class="fas fa-spinner fa-spin"></i> Loading jobs...</div>';
+                
+                // Simulate API call to get jobs
+                setTimeout(() => {
+                    // Sample job data
+                    const jobs = [
+                        {
+                            title: 'Senior Project Manager',
+                            company: 'Tech Innovations Inc.',
+                            location: 'San Francisco, CA (Remote available)',
+                            salary: '$110,000 - $130,000',
+                            description: 'Leading cross-functional teams in the development and launch of enterprise software products.',
+                            match: '95%'
+                        },
+                        {
+                            title: 'Program Manager',
+                            company: 'Global Systems',
+                            location: 'New York, NY (Hybrid)',
+                            salary: '$100,000 - $120,000',
+                            description: 'Coordinating multiple projects and ensuring alignment with strategic business objectives.',
+                            match: '85%'
+                        },
+                        {
+                            title: 'Technical Project Lead',
+                            company: 'Future Solutions',
+                            location: 'Austin, TX (Remote)',
+                            salary: '$105,000 - $125,000',
+                            description: 'Managing technical projects from conception to delivery with a focus on cloud infrastructure.',
+                            match: '80%'
+                        },
+                        {
+                            title: 'Product Manager',
+                            company: 'Innovative Apps',
+                            location: 'Seattle, WA (On-site)',
+                            salary: '$115,000 - $140,000',
+                            description: 'Driving product vision, strategy, and roadmap for consumer-facing applications.',
+                            match: '75%'
+                        }
+                    ];
+                    
+                    // Render jobs
+                    jobsContainer.innerHTML = '';
+                    
+                    jobs.forEach(job => {
+                        const jobCard = document.createElement('div');
+                        jobCard.className = 'job-card';
+                        jobCard.innerHTML = `
+                            <div class="job-header">
+                                <h3>${job.title}</h3>
+                                <span class="match-badge">${job.match} Match</span>
+                            </div>
+                            <h4>${job.company}</h4>
+                            <div class="job-details">
+                                <p><i class="fas fa-map-marker-alt"></i> ${job.location}</p>
+                                <p><i class="fas fa-dollar-sign"></i> ${job.salary}</p>
+                            </div>
+                            <p class="job-description">${job.description}</p>
+                            <div class="job-actions">
+                                <button class="btn btn-primary apply-btn"><i class="fas fa-paper-plane me-2"></i>Apply</button>
+                                <button class="btn btn-outline-secondary save-btn"><i class="far fa-bookmark me-2"></i>Save</button>
+                            </div>
+                        `;
+                        jobsContainer.appendChild(jobCard);
+                    });
+                    
+                    // Add event listeners to job action buttons
+                    const applyButtons = document.querySelectorAll('.apply-btn');
+                    const saveButtons = document.querySelectorAll('.save-btn');
+                    
+                    applyButtons.forEach((btn, index) => {
+                        btn.addEventListener('click', () => {
+                            // In a real app, this would redirect to application page or form
+                            alert(`Application started for ${jobs[index].title} at ${jobs[index].company}`);
+                        });
+                    });
+                    
+                    saveButtons.forEach((btn, index) => {
+                        btn.addEventListener('click', function() {
+                            // Toggle save state
+                            const isSaved = this.innerHTML.includes('far');
+                            if (isSaved) {
+                                this.innerHTML = '<i class="fas fa-bookmark me-2"></i>Saved';
+                                this.classList.add('saved');
+                            } else {
+                                this.innerHTML = '<i class="far fa-bookmark me-2"></i>Save';
+                                this.classList.remove('saved');
+                            }
+                            
+                            // In a real app, this would save the job to user's account
+                            console.log(`Job ${isSaved ? 'saved' : 'unsaved'}: ${jobs[index].title}`);
+                        });
+                    });
+                }, 1500);
+            }
+            
+            // Check auth status on page load
+            checkAuth();
+        });
+    </script>
+</body>
+</html>
