@@ -164,7 +164,7 @@ const CareerCompass = () => {
             <div style={{ background: 'white', padding: '0.5rem', borderRadius: '8px' }}>
               <Lightbulb size={24} color="#667eea" />
             </div>
-            <h1 style={{ fontSize: '1.25rem', fontWeight: 'bold' }}>Career Compass India</h1>
+            <h1 style={{ fontSize: '1.25rem', fontWeight: 'bold' }}>Career Compass</h1>
           </div>
           
           <nav style={{ display: window.innerWidth >= 768 ? 'flex' : 'none', alignItems: 'center', gap: '1.5rem' }}>
@@ -267,7 +267,7 @@ const CareerCompass = () => {
         <div style={{ maxWidth: '900px', margin: '0 auto', textAlign: 'center' }}>
           <h1>Your AI Career Assistant</h1>
           <p>
-            Welcome to Career Compass! I'm your personal AI assistant specializing in helping women find their 
+            Welcome to Career Compass! I'm your personal AI assistant specializing in helping people find their 
             ideal jobs across Indian tech hubs. I can help with job searches, resume building, interview preparation, 
             and addressing gender-specific challenges in the Indian workplace.
           </p>
@@ -426,7 +426,7 @@ const CareerCompass = () => {
     <div className="container">
       <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
         <h2 style={{ fontSize: '2.25rem', fontWeight: 'bold', color: '#1f2937', marginBottom: '1rem' }}>
-          How Career Compass India Helps You Succeed
+          How Career Compass Helps You Succeed
         </h2>
         <p style={{ fontSize: '1.25rem', color: '#6b7280' }}>
           Tools and resources designed specifically for women in the Indian workplace
@@ -476,55 +476,6 @@ const CareerCompass = () => {
     </div>
   </div>
 );
-
-// Add these functions to your component
-const fetchJobRecommendations = async (filters = {}) => {
-  try {
-    const response = await fetch('/api/jobs', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(filters)
-    });
-    return await response.json();
-  } catch (error) {
-    console.error('Error fetching jobs:', error);
-    return null;
-  }
-};
-
-const analyzeResume = async (resumeData) => {
-  try {
-    const response = await fetch('/api/resume/analyze', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(resumeData)
-    });
-    return await response.json();
-  } catch (error) {
-    console.error('Error analyzing resume:', error);
-    return null;
-  }
-};
-
-const getSalaryInsights = async (position, experience, location) => {
-  try {
-    const response = await fetch('/api/salary', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ position, experience, location })
-    });
-    return await response.json();
-  } catch (error) {
-    console.error('Error fetching salary insights:', error);
-    return null;
-  }
-};
 
   const MainContent = () => {
       // Add state for job search
@@ -890,7 +841,7 @@ const getSalaryInsights = async (position, experience, location) => {
               <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold' }}>Career Compass</h3>
             </div>
             <p style={{ color: '#a0aec0', marginBottom: '1rem' }}>
-              Empowering women to navigate their professional journey with confidence and success across India.
+              Empowering people to navigate their professional journey with confidence and success across India.
             </p>
           </div>
           
